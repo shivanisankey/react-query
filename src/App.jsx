@@ -1,28 +1,36 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Provider } from 'react-redux'
-import { store } from './services/redux/store'
-import ReduxUser from './examples/ReduxUser';
-import RQUserList from './examples/RQUserList';
-import BasicUserList from './examples/BasicUserList';
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import AppRouter from "./router";
+import { Provider } from "react-redux";
+import { store } from "./services/redux/store";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 30, // data stays fresh for 30 seconds
+      gcTime: 1000 * 60 * 5, // unused cache kept for 5 minutes
+      retry: 2, // retry failed requests twice
+      refetchOnWindowFocus: false, // no surprise refetch on tab focus
+    },
+  },
+});
 
 // React Query
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div style={{ padding: "2rem", fontFamily: "Arial" }}>
-        <h1>React Query Demo</h1>
-        <RQUserList />
-      </div>
-
-      <ReactQueryDevtools initialIsOpen={false} />
-
-    </QueryClientProvider>
-  )
+    <Provider store={store}>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <AppRouter />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </BrowserRouter>
+    </Provider>
+  );
 }
 
 // Redux
@@ -47,4 +55,4 @@ function App() {
 //   )
 // }
 
-export default App
+export default App;
