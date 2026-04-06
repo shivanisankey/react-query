@@ -11,7 +11,6 @@ function Products() {
   const limit = parseInt(searchParams.get("limit") || 8);
   const offset = parseInt(searchParams.get("offset") || 0);
   const q = searchParams.get("q") || "";
-  const category = searchParams.get("category") || "";
 
   const handleMove = (moveCount) => {
     setSearchParams((prev) => {
@@ -20,22 +19,10 @@ function Products() {
     });
   };
 
-  const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      return await fetch("https://dummyjson.com/products/categories").then(
-        (res) => res.json(),
-      );
-    },
-  });
-
   const { data: products } = useQuery({
-    queryKey: ["products", limit, offset, q, category],
+    queryKey: ["products", limit, offset, q],
     queryFn: async () => {
       let url = `https://dummyjson.com/products/search?limit=${limit}&skip=${offset}&q=${q}`;
-      if (category) {
-        url = `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${offset}`;
-      }
       const data = await fetch(url).then((res) => res.json());
       return data.products;
     },
@@ -69,23 +56,6 @@ function Products() {
                 className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="IPhone"
               />
-              <select
-                className="border p-2"
-                onChange={(e) => {
-                  setSearchParams((prev) => {
-                    prev.set("offset", 0);
-                    prev.delete("q");
-                    prev.set("category", e.target.value);
-                  });
-                }}
-              >
-                <option>Select category</option>
-                {categories?.map((category) => (
-                  <option key={category?.slug} value={category?.slug}>
-                    {category?.slug}
-                  </option>
-                ))}
-              </select>
             </div>
           </div>
 
