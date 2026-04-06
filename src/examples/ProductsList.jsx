@@ -2,32 +2,32 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 function ProductsList() {
-  const [searchParams, setSearchParams] = useSearchParams({
-    limit: 12,
-  });
-
-  const limit = parseInt(searchParams.get("limit") || 12);
-
   // Fetch products
-  const { data: products, isLoading, isError, error } = useQuery({
-    queryKey: ["products", limit],
+  const {
+    data: products,
+    isLoading,
+    isError,
+    isFetching,
+    error,
+  } = useQuery({
+    queryKey: ["products"],
     queryFn: async () => {
-      let url = `https://dmmyjson.com/products/search?limit=${limit}`;
+      let url = `https://dummyjson.com/products`;
       const res = await fetch(url);
       const data = await res.json();
       return data.products;
     },
 
     // ✅ Caching & stale behavior
-    staleTime: 5000,       // Data is fresh for 5s, won’t refetch in background
-    gcTime: 10000,           // How long unused data stays in cache before garbage collection (10 sec)
+    staleTime: 5000, // Data is fresh for 5s, won’t refetch in background
+    gcTime: 10000, // How long unused data stays in cache before garbage collection (10 sec)
 
     // ✅ Retry behavior
     // retry: 2,               // Number of retry attempts if query fails
-    // retryDelay: attemptIndex => Math.min(5000 * 2 ** attemptIndex, 30000), // Exponential backoff 
+    // retryDelay: attemptIndex => Math.min(5000 * 2 ** attemptIndex, 30000), // Exponential backoff
 
     // // ✅ Refetching behavior
-    // refetchOnReconnect: false,     // refetch when browser reconnects to internet
+    // refetchOnReconnect: false, // refetch when browser reconnects to internet
     // refetchInterval: 1000,           // auto refetch interval in ms (0 = disabled)
 
     // // ✅ Select & transform data // transform the data before returning to component
@@ -36,11 +36,6 @@ function ProductsList() {
     //     ...product,
     //     title: product.title.slice(0, 10),
     //   })),
-
-    // ✅ Callbacks
-    onSuccess: data => console.log("Fetched products:", data),
-    onError: error => console.log("Error fetching products:", error),
-    onSettled: (data, error) => console.log("Query finished", data, error),
   });
 
   if (isLoading) return <p>Loading products...</p>;
@@ -66,9 +61,13 @@ function ProductsList() {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">{product.title}</h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {product.category}
+                  </p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">{product.price}</p>
+                <p className="text-sm font-medium text-gray-900">
+                  {product.price}
+                </p>
               </div>
             </div>
           ))}

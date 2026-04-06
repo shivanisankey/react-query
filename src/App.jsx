@@ -4,32 +4,28 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AppRouter from "./router";
-import { Provider } from "react-redux";
-import { store } from "./services/redux/store";
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 30, // data stays fresh for 30 seconds
-      gcTime: 1000 * 60 * 5, // unused cache kept for 5 minutes
-      retry: 2, // retry failed requests twice
-      refetchOnWindowFocus: false, // no surprise refetch on tab focus
-    },
-  },
+  // defaultOptions: {
+  //   queries: {
+  //     staleTime: 1000 * 30, // data stays fresh for 30 seconds
+  //     gcTime: 1000 * 60 * 5, // unused cache kept for 5 minutes
+  //     retry: 2, // retry failed requests twice
+  //     refetchOnWindowFocus: false, // no surprise refetch on tab focus
+  //   },
+  // },
 });
 
 // React Query
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <Navbar />
-          <AppRouter />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Navbar />
+        <AppRouter />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 }
 

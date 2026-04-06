@@ -1,14 +1,14 @@
-import React from "react";
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 
 const Optimistic = () => {
   const queryClient = new QueryClient({});
   const { data: posts } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts-data"],
+    staleTime: 0,
     queryFn: async () => {
-      const response = await fetch(
-        "http://localhost:3000/posts?_sort=id&_order=desc",
-      ).then((data) => data.json());
+      const response = await fetch("http://localhost:3000/posts").then((data) =>
+        data.json(),
+      );
       return response;
     },
   });
@@ -22,7 +22,7 @@ const Optimistic = () => {
         },
       }),
     onSuccess: async () => {
-      return await queryClient.invalidateQueries({ queryKey: ["posts"] });
+      return await queryClient.invalidateQueries({ queryKey: ["posts-data"] });
     },
   });
 
