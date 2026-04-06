@@ -6,6 +6,9 @@ import ReduxUser from "../examples/ReduxUser.jsx";
 import RQUserList from "../examples/RQUserList.jsx";
 import TrendList from "../pages/List.jsx";
 import Paginated from "../pages/Paginated.jsx";
+import Parallel from "../pages/Parallel.jsx";
+import Dependant from "../pages/Dependent.jsx";
+import Optimistic from "../pages/optimistic.jsx";
 
 export default function AppRouter() {
   return (
@@ -19,6 +22,9 @@ export default function AppRouter() {
       <Route path="/list" element={<RQUserList />} />
       <Route path="/list1" element={<TrendList />} />
       <Route path="/pagination" element={<Paginated />} />
+      <Route path="/parallel" element={<Parallel />} />
+      <Route path="/dependent" element={<Dependant />} />
+      <Route path="/optimistic" element={<Optimistic />} />
 
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
