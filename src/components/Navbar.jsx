@@ -5,6 +5,7 @@ const tabs = [
   { label: "Basic", to: "/basic" },
   { label: "List", to: "/list" },
   { label: "Pagination", to: "/pagination" },
+  { label: "Infinite Query", to: "/infinite" },
   { label: "Parallel", to: "/parallel" },
   { label: "Dependent", to: "/dependent" },
   { label: "Optimistic UI", to: "/optimistic" },

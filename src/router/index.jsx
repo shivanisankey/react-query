@@ -9,6 +9,7 @@ import Paginated from "../pages/Paginated.jsx";
 import Parallel from "../pages/Parallel.jsx";
 import Dependant from "../pages/Dependent.jsx";
 import Optimistic from "../pages/optimistic.jsx";
+import InfiniteQuery from "../pages/InfiniteQuery.jsx";
 
 export default function AppRouter() {
   return (
@@ -21,6 +22,7 @@ export default function AppRouter() {
       <Route path="/redux" element={<ReduxUser />} />
       <Route path="/list" element={<ProductsList />} />
       <Route path="/pagination" element={<Paginated />} />
+      <Route path="/infinite" element={<InfiniteQuery />} />
       <Route path="/parallel" element={<Parallel />} />
       <Route path="/dependent" element={<Dependant />} />
       <Route path="/optimistic" element={<Optimistic />} />
