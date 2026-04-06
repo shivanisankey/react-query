@@ -43,7 +43,7 @@ export default function Navbar() {
           border-radius: 8px;
           font-size: 14px;
           font-weight: 500;
-          color: #6b7a9e;
+          color: black;
           text-decoration: none;
           transition: all 0.18s ease;
           border: 1px solid transparent;
@@ -65,7 +65,7 @@ export default function Navbar() {
 
 const styles = {
   header: {
-    background: "#0f1117",
+    background: "white",
     borderBottom: "1px solid #1e2435",
     position: "sticky",
     top: 0,
@@ -82,7 +82,7 @@ const styles = {
   brand: {
     fontSize: 18,
     fontWeight: 700,
-    color: "#f0f2ff",
+    color: "black",
     letterSpacing: "-0.3px",
     marginRight: "auto",
   },

@@ -26,7 +26,7 @@ export default function Home() {
       <div style={styles.cards}>
         {INFO_CARDS.map((card) => (
           <div key={card.title} style={styles.card}>
-            <div style={styles.cardIcon}>{card.icon}</div>
+            {/* <div style={styles.cardIcon}>{card.icon}</div> */}
             <h3 style={styles.cardTitle}>{card.title}</h3>
             <p style={styles.cardText}>{card.text}</p>
           </div>
@@ -62,7 +62,7 @@ const INFO_CARDS = [
 const styles = {
   page: {
     minHeight: "calc(100vh - 57px)",
-    background: "#0f1117",
+    background: "white",
     padding: "60px 32px",
     maxWidth: 1100,
     margin: "0 auto",
@@ -76,7 +76,7 @@ const styles = {
     fontSize: 12,
     fontWeight: 600,
     letterSpacing: "0.08em",
-    color: "#4f6ef7",
+    color: "white",
     background: "#1a2040",
     border: "1px solid #2a4080",
     borderRadius: 20,
@@ -87,7 +87,7 @@ const styles = {
   title: {
     fontSize: 48,
     fontWeight: 800,
-    color: "#f0f2ff",
+    color: "black",
     margin: "0 0 16px",
     letterSpacing: "-1px",
     lineHeight: 1.1,
@@ -105,14 +105,14 @@ const styles = {
     border: "1px solid #2a2f3e",
     borderRadius: 4,
     padding: "1px 6px",
-    color: "#60a5fa",
+    color: "white",
     fontSize: 13,
   },
   ctaBtn: {
     padding: "12px 28px",
     borderRadius: 10,
     border: "none",
-    background: "linear-gradient(135deg, #4f6ef7, #6c4ff7)",
+    background: "linear-gradient(135deg, #181a27ff, black)",
     color: "#fff",
     fontSize: 15,
     fontWeight: 600,
@@ -124,20 +124,20 @@ const styles = {
     gap: 20,
   },
   card: {
-    background: "#1a1f2e",
+    background: "white",
     border: "1px solid #2a2f3e",
     borderRadius: 14,
     padding: "24px 22px",
   },
   cardIcon: {
     fontSize: 22,
-    color: "#4f6ef7",
+    color: "#black",
     marginBottom: 12,
   },
   cardTitle: {
     fontSize: 15,
     fontWeight: 600,
-    color: "#e8eaf0",
+    color: "black",
     margin: "0 0 8px",
   },
   cardText: {
