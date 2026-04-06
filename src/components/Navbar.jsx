@@ -5,6 +5,7 @@ const tabs = [
   { label: "Basic", to: "/basic" },
   // { label: "Redux", to: "/redux" },
   { label: "List", to: "/list" },
+  { label: "Pagination", to: "/pagination" },
   // { label: "Trend-List", to: "/list1" },
 ];
 

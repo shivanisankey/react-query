@@ -5,6 +5,7 @@ import BasicUserList from "../examples/BasicUserList.jsx";
 import ReduxUser from "../examples/ReduxUser.jsx";
 import RQUserList from "../examples/RQUserList.jsx";
 import TrendList from "../pages/List.jsx";
+import Paginated from "../pages/Paginated.jsx";
 
 export default function AppRouter() {
   return (
@@ -17,6 +18,7 @@ export default function AppRouter() {
       <Route path="/redux" element={<ReduxUser />} />
       <Route path="/list" element={<RQUserList />} />
       <Route path="/list1" element={<TrendList />} />
+      <Route path="/pagination" element={<Paginated />} />
 
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
