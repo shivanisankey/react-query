@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 const tabs = [
   { label: "Home", to: "/home" },
   { label: "Basic", to: "/basic" },
-  { label: "Redux", to: "/redux" },
+  // { label: "Redux", to: "/redux" },
   { label: "List", to: "/list" },
-  { label: "Trend-List", to: "/list1" },
+  // { label: "Trend-List", to: "/list1" },
 ];
 
 export default function Navbar() {
