@@ -3,7 +3,7 @@ import Home from "../pages/Home.jsx";
 import List from "../pages/List.jsx";
 import BasicUserList from "../examples/BasicUserList.jsx";
 import ReduxUser from "../examples/ReduxUser.jsx";
-import RQUserList from "../examples/RQUserList.jsx";
+import ProductsList from "../examples/ProductsList.jsx";
 import TrendList from "../pages/List.jsx";
 import Paginated from "../pages/Paginated.jsx";
 import Parallel from "../pages/Parallel.jsx";
@@ -19,8 +19,7 @@ export default function AppRouter() {
       <Route path="/home" element={<Home />} />
       <Route path="/basic" element={<BasicUserList />} />
       <Route path="/redux" element={<ReduxUser />} />
-      <Route path="/list" element={<RQUserList />} />
-      <Route path="/list1" element={<TrendList />} />
+      <Route path="/list" element={<ProductsList />} />
       <Route path="/pagination" element={<Paginated />} />
       <Route path="/parallel" element={<Parallel />} />
       <Route path="/dependent" element={<Dependant />} />
