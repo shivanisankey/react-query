@@ -1,16 +1,45 @@
 {
-    "posts": [
-        {
-            "id": "1",
-            "title": "Node js is awesome"
-        },
-        {
-            "id": "2",
-            "title": "JavaScript is cool"
-        },
-        {
-            "id": "3",
-            "title": "Software development"
-        }
-    ]
+  "posts": [
+    {
+      "id": "1",
+      "title": "Node js is awesome"
+    },
+    {
+      "id": "2",
+      "title": "JavaScript is cool"
+    },
+    {
+      "id": "3",
+      "title": "Software development"
+    },
+    {
+      "id": "LD9kXPr8eZs",
+      "title": "Akshay"
+    },
+    {
+      "id": "5Wdr5oeexsU",
+      "title": "patil"
+    },
+    {
+      "id": "aly4lo0K_aY",
+      "title": "Nishant"
+    },
+    {
+      "id": "xCm0GjuLKvM",
+      "title": "Dani"
+    },
+    {
+      "id": "MYRTJ5wYh3w",
+      "title": "a"
+    },
+    {
+      "id": "46qU53ezezE",
+      "title": "q"
+    },
+    {
+      "id": "PJXmV_RQmnc",
+      "title": "e"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

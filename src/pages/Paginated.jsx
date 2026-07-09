@@ -1,5 +1,4 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import debounce from "lodash.debounce";
 import { useSearchParams } from "react-router-dom";
 
@@ -24,10 +23,10 @@ function Products() {
     queryFn: async () => {
       let url = `https://dummyjson.com/products/search?limit=${limit}&skip=${offset}&q=${q}`;
       const data = await fetch(url).then((res) => res.json());
-      return data.products;
+      return data;
     },
     placeholderData: keepPreviousData,
-    staleTime: 5000,
+    staleTime: 20000,
   });
 
   return (
@@ -46,7 +45,6 @@ function Products() {
                   setSearchParams((prev) => {
                     prev.set("offset", 0);
                     prev.set("q", e.target.value);
-                    prev.delete("category");
                     return prev;
                   });
                 }, 1000)}
@@ -60,7 +58,7 @@ function Products() {
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {products?.map((product) => (
+            {products?.products?.map((product) => (
               <div key={product.id} className="group relative">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-64">
                   <img
@@ -91,7 +89,10 @@ function Products() {
 
           <div className="flex gap-2 mt-12">
             <button
-              className="bg-purple-500 px-4 py-1 text-white rounded"
+              disabled={offset < limit}
+              className="bg-purple-500 px-4 py-1 text-white rounded disabled:bg-gray-400 
+             disabled:cursor-not-allowed 
+             disabled:opacity-60"
               onClick={() => {
                 handleMove(-limit);
               }}
@@ -99,7 +100,10 @@ function Products() {
               Prev
             </button>
             <button
-              className="bg-purple-500 px-4 py-1 text-white rounded"
+              disabled={limit + offset >= products?.total}
+              className="bg-purple-500 px-4 py-1 text-white rounded disabled:bg-gray-400 
+             disabled:cursor-not-allowed 
+             disabled:opacity-60"
               onClick={() => {
                 handleMove(limit);
               }}
