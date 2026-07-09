@@ -17,7 +17,7 @@ export default function Navbar() {
     <header style={styles.header}>
       <div style={styles.inner}>
         {/* Brand */}
-        <span style={styles.brand}>MyApp</span>
+        <span style={styles.brand}>Welcome Shivani!</span>
 
         {/* Nav tabs */}
         <nav style={styles.nav}>
