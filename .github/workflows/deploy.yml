@@ -13,7 +13,13 @@ jobs:
       - name: Checkout latest code
         uses: actions/checkout@v5
 
-      - name: Stop existing container
+      - name: Show latest commit
+        shell: powershell
+        run: |
+          git log -1 --oneline
+          git status
+
+      - name: Stop and remove existing container
         shell: powershell
         run: |
           docker stop react-container 2>$null
@@ -22,14 +28,14 @@ jobs:
       - name: Remove old image
         shell: powershell
         run: |
-          docker rmi react-app 2>$null
+          docker rmi react-app -f 2>$null
 
-      - name: Build Docker image
+      - name: Build new Docker image
         shell: powershell
         run: |
-          docker build -t react-app .
+          docker build --no-cache -t react-app .
 
-      - name: Start new container
+      - name: Run new container
         shell: powershell
         run: |
           docker run -d `
@@ -37,3 +43,17 @@ jobs:
             --restart unless-stopped `
             -p 8080:80 `
             react-app
+
+      - name: Verify deployment
+        shell: powershell
+        run: |
+          Write-Host "Running Containers:"
+          docker ps
+
+          Write-Host ""
+          Write-Host "Available Images:"
+          docker images
+
+          Write-Host ""
+          Write-Host "Container Logs:"
+          docker logs react-container
