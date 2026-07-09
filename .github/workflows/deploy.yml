@@ -1,0 +1,39 @@
+name: Deploy React Docker App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v4
+
+      - name: Stop existing container
+        shell: powershell
+        run: |
+          docker stop react-container 2>$null
+          docker rm react-container 2>$null
+
+      - name: Remove old image
+        shell: powershell
+        run: |
+          docker rmi react-app 2>$null
+
+      - name: Build Docker image
+        shell: powershell
+        run: |
+          docker build -t react-app .
+
+      - name: Start new container
+        shell: powershell
+        run: |
+          docker run -d `
+            --name react-container `
+            --restart unless-stopped `
+            -p 8080:80 `
+            react-app
